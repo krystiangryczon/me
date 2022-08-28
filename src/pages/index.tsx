@@ -8,7 +8,15 @@ type TechnologyCardProps = {
   documentation: string;
 };
 
-const Home: NextPage = () => {
+export const getServerSideProps = async () => {
+  return {
+    props: {
+      info: "I'm gonna play with t3 stack here",
+    },
+  };
+};
+
+const Home: NextPage<{ info: string }> = (props) => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
 
   return (
@@ -46,8 +54,9 @@ const Home: NextPage = () => {
             documentation="https://trpc.io/"
           />
         </div>
-        <div className="pt-6 text-2xl text-blue-500 flex justify-center items-center w-full">
+        <div className="pt-6 text-2xl text-blue-500 flex flex-col justify-center items-center w-full">
           {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
+          <p>{props.info}</p>
         </div>
       </main>
     </>
