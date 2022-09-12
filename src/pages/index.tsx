@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
+import { log } from "next-axiom";
 
 type TechnologyCardProps = {
   name: string;
@@ -9,6 +10,8 @@ type TechnologyCardProps = {
 };
 
 export const getServerSideProps = async () => {
+  log.debug("new sign-in challenge", { customerId: 32423, auth: "session" });
+
   return {
     props: {
       info: "I'm gonna play with t3 stack here",

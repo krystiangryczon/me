@@ -55,3 +55,5 @@ export default withTRPC<AppRouter>({
    */
   ssr: false,
 })(MyApp);
+
+export { reportWebVitals } from "next-axiom";
